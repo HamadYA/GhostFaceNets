@@ -358,10 +358,10 @@ Both Linux and Windows OS are supported.
 If you use GhostFaceNets (or any part of this code in your research), please cite the following:
 
 ```
-@inproceedings{tst,
-  title   = {Trainable Structure Tensors for Autonomous Baggage Threat Detection Under Extreme Occlusion},
-  author  = {Taimur Hassan and Samet Akcay and Mohammed Bennamoun and Salman Khan and Naoufel Werghi},
-  note = {Asian Conference on Computer Vision (ACCV)},
+@article{ghostfacenets,
+  title   = {GhostFaceNets: Lightweight Face Recognition Model from Cheap Operations},
+  author  = {Mohamad Alansari, Oussama Abdul Hay, Sajid Javed, Abdulhadi Shoufan, Yahya Zwiri, and Naoufel Werghi},
+  journal = {IEEE Access},
   year = {2023}
 }
 ```
