@@ -3,7 +3,7 @@
 
 ## Introduction
 - This repository contains the official implementation of GhostFaceNets, State-Of-The-Art lightweight face recognition models.
-- `Accepted in IEEE Access`
+- **Accepted in IEEE Access**
 
 ![GhostFaceNets](/images/Picture11.png)
 
@@ -70,7 +70,7 @@ To run GhostFaceNets, please install the following packages:
 
 Both Linux and Windows OS are supported.
 
-- **All results in the paper are generated using `Ubuntu 20.04.05 LTS`, `Miniconda`, `Tensorflow 2.10.0` with `cuda==11.2` `cudnn==8.1`**.
+- **All results in the paper are generated using `Ubuntu 20.04.05 LTS`, `Miniconda`, `Tensorflow 2.8.0` with `cuda==11.2` `cudnn==8.1`**.
 - Please follow [Step-by-step instructions Tensorflow installation guide](https://www.tensorflow.org/install/pip)
 
 ## Datasets and Data Preparation
