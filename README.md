@@ -2,8 +2,8 @@
 # GhostFaceNets
 
 ## Introduction
-This repository contains the official implementation of GhostFaceNets, State-Of-The-Art lightweight face recognition models.
-'Accepted in IEEE Access'
+- This repository contains the official implementation of GhostFaceNets, State-Of-The-Art lightweight face recognition models.
+- `Accepted in IEEE Access`
 
 ![GhostFaceNets](/images/Picture11.png)
 
