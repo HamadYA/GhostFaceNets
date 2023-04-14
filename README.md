@@ -70,8 +70,8 @@ To run GhostFaceNets, please install the following packages:
     8. sklearn
     9. scikit-image
 
-To install [keras_cv_attention_models](https://github.com/leondgarse/keras_cv_attention_models), please run pip install keras_cv_attention_models.
-Both Linux and Windows OS are supported.
+- To install [keras_cv_attention_models](https://github.com/leondgarse/keras_cv_attention_models), please run pip install keras_cv_attention_models.
+- Both Linux and Windows OS are supported.
 
 - **All results in the paper are generated using `Ubuntu 20.04.05 LTS`, `Miniconda`, `Tensorflow 2.8.0` with `cuda==11.2` `cudnn==8.1`**.
 - Please follow [Step-by-step instructions Tensorflow installation guide](https://www.tensorflow.org/install/pip)
