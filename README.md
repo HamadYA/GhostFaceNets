@@ -359,7 +359,6 @@ To run GhostFaceNets, please install the following packages:
   - Run run_remove_noises.sh
   - Run run_megaface.sh
   - Run run_megaface_refined.sh
-  - 
 ***
 
 # Acknowledgement
