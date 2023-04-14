@@ -62,12 +62,13 @@ To run GhostFaceNets, please install the following packages:
 
     1. Python 3.9.12 64-bit
     2. TensorFlow 2.8.0 or above (CUDA compatible GPU needed for GPU training)
-    3. Keras 2.8.0 or above 
-    4. glob2
-    5. pandas
-    6. tqdm
-    7. sklearn
-    8. scikit-image
+    3. Keras 2.8.0 or above
+    4. [keras_cv_attention_models](https://github.com/leondgarse/keras_cv_attention_models) pip install keras_cv_attention_models
+    5. glob2
+    6. pandas
+    7. tqdm
+    8. sklearn
+    9. scikit-image
 
 Both Linux and Windows OS are supported.
 
