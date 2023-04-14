@@ -362,12 +362,16 @@ To run GhostFaceNets, please install the following packages:
 If you use GhostFaceNets (or any part of this code in your research), please cite the following:
 
 ```
-@article{ghostfacenets,
-  title   = {GhostFaceNets: Lightweight Face Recognition Model from Cheap Operations},
-  author  = {Mohamad Alansari, Oussama Abdul Hay, Sajid Javed, Abdulhadi Shoufan, Yahya Zwiri, and Naoufel Werghi},
-  journal = {IEEE Access},
-  year = {2023}
-}
+@ARTICLE{10098610,
+  author={Alansari, Mohamad and Hay, Oussama Abdul and Javed, Sajid and Shoufan, Abdulhadi and Zweiri, Yahya and Werghi, Naoufel},
+  journal={IEEE Access}, 
+  title={GhostFaceNets: Lightweight Face Recognition Model From Cheap Operations}, 
+  year={2023},
+  volume={11},
+  number={},
+  pages={35429-35446},
+  doi={10.1109/ACCESS.2023.3266068}}
+
 ```
 and
   - **BibTeX**
