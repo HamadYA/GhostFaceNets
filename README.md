@@ -349,6 +349,19 @@ To run GhostFaceNets, please install the following packages:
     ```
 ***
 
+# Evaluating on MegaFace datasets
+  - Download megaface testsuite from [baiducloud](https://pan.baidu.com/s/1Vdxc2GgbY8wIW0hVcObIwg)(code:0n6w) or [gdrive](https://drive.google.com/file/d/1KBwp0U9oZgZj7SYDXRxUnnH7Lwvd9XMy/view?usp=sharing). The official devkit is also included.
+  - Prepare the environment. OpenCV 2.4 is required by the official devkit, for convenience, you can download it from [BaiduCloud](https://pan.baidu.com/s/1By4yIds0hEnw6_Ihh75R5w) or [GoogleDrive](https://drive.google.com/open?id=1Ifjj6zJQaXzuggr0tVcaMe21F7hd1PZk) and unzip to ``/usr/local/lib/opencv2.4``.
+  - Edit and call ``run.sh`` to evaluate your face recognition model performance.
+
+**If errors**
+  - Run gen_megaface.ipynb or gen_megaface.py **After making appropriate modifications if needed, i.e., provide model path; or move the GhostFaceNets directory to be a part of the MegaFace testsuite**
+  - Run run_remove_noises.sh
+  - Run run_megaface.sh
+  - Run run_megaface_refined.sh
+  - 
+***
+
 # Acknowledgement
   This project includes code and ideas from the following sources:
   
