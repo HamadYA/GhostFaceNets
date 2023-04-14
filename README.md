@@ -319,29 +319,29 @@ To run GhostFaceNets, please install the following packages:
   
 # Evaluating on IJB datasets
   - [IJB_evals.py](IJB_evals.py) evaluates model accuracy using [insightface/evaluation/IJB/](https://github.com/deepinsight/insightface/tree/master/recognition/_evaluation_/ijb) datasets.
-  - If any error occured from using the below scripts, kindly refer to [evaluation.ipynb](evaluation.ipynb). **Note: We ran the models on Google Colaboratory due to dependency issues**.
-  - In case placing `IJB` dataset `/media/SD/IJB_release`, basic usage will be:
+  - If any error occured from using the below scripts, kindly refer to [evaluation.ipynb](evaluation.ipynb). **Note: We can run the models on Google Colaboratory due to dependency issues**.
+  - In case placing `IJB` dataset `IJB/IJB_release`, basic usage will be:
     ```sh
     # Test mxnet model, default scenario N0D1F1
-    python IJB_evals.py -m '/media/SD/IJB_release/pretrained_models/MS1MV2-ResNet100-Arcface/model,0' -d /media/SD/IJB_release -L
+    python IJB_evals.py -m 'checkpoints/GhostFaceNet_W1.3_S1_ArcFace.h5' -d IJB/IJB_release -L
 
     # Test keras h5 model, default scenario N0D1F1
-    python IJB_evals.py -m 'checkpoints/basic_model.h5' -d /media/SD/IJB_release -L
+    python IJB_evals.py -m 'checkpoints/GhostFaceNet_W1.3_S1_ArcFace.h5' -d IJB/IJB_release -L
 
     # `-B` to run all 8 tests N{0,1}D{0,1}F{0,1}
-    python IJB_evals.py -m 'checkpoints/basic_model.h5' -d /media/SD/IJB_release -B -L
+    python IJB_evals.py -m 'checkpoints/GhostFaceNet_W1.3_S1_ArcFace.h5' -d IJB/IJB_release -B -L
 
     # `-N` to run 1N test
-    python IJB_evals.py -m 'checkpoints/basic_model.h5' -d /media/SD/IJB_release -N -L
+    python IJB_evals.py -m 'checkpoints/GhostFaceNet_W1.3_S1_ArcFace.h5' -d IJB/IJB_release -N -L
 
     # `-E` to save embeddings data
-    python IJB_evals.py -m 'checkpoints/basic_model.h5' -d /media/SD/IJB_release -E
+    python IJB_evals.py -m 'checkpoints/GhostFaceNet_W1.3_S1_ArcFace.h5' -d IJB/IJB_release -E
     # Then can be restored for other tests, add `-E` to save again
-    python IJB_evals.py -R IJB_result/MS1MV2-ResNet100-Arcface_IJBB.npz -d /media/SD/IJB_release -B
+    python IJB_evals.py -R IJB_result/checkpoints/GhostFaceNet_W1.3_S1_ArcFace_IJBB.npz -d IJB/IJB_release -B
 
     # Plot result only, this needs the `label` data, which can be saved using `-L` parameter.
     # Or should provide the label txt file.
-    python IJB_evals.py --plot_only /media/SD/IJB_release/IJBB/result/*100*.npy /media/SD/IJB_release/IJBB/meta/ijbb_template_pair_label.txt
+    python IJB_evals.py --plot_only IJB/IJB_release/IJBB/result/*100*.npy IJB/IJB_release/IJBB/meta/ijbb_template_pair_label.txt
     ```
   - See `-h` for detail usage.
     ```sh
