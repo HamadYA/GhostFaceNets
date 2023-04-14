@@ -15,18 +15,18 @@
 
   | Model | Training Dataset | lfw (%)      | cfp_fp (%)   | agedb_30 (%) | IJBB     | IJBC     |
   | -------------- | ----- | -------- | -------- | -------- | -------- | -------- |
-  | [GhostFaceNetV1-0.5-2 (A)]() | MS1MV2 | 99.783 | 83.4 | 91.13 | - | - |
-  | [GhostFaceNetV1-1-2 (A)]() | MS1MV2 | 99.383 | 88.81 | 94.85 | - | - |
+  | [GhostFaceNetV1-0.5-2 (A)](https://github.com/HamadYA/GhostFaceNets/releases/download/v1.0/GN_W0.5_S2_ArcFace_epoch16.h5) | MS1MV2 | 99.783 | 83.4 | 91.13 | - | - |
+  | [GhostFaceNetV1-1-2 (A)](https://github.com/HamadYA/GhostFaceNets/releases/download/v1.1/GN_W1_S2_ArcFace_epoch18.h5) | MS1MV2 | 99.383 | 88.81 | 94.85 | - | - |
   | [GhostFaceNetV1-1.2-2 (A)]() | MS1MV2 | 99.53 | 90.13 | 95.62 | - | - |
   | [GhostFaceNetV1-1.4-2 (A)]() | MS1MV2 | 99.6167 | 90.8857 | 95.78 | - | - |
-  | [GhostFaceNetV1-1.3-2 (A)]() | MS1MV2 | 99.65 | 91.51 | 96.18 |90.53 | 92.66   |
-  | [GhostFaceNetV1-1.3-1 (A)]() | MS1MV2 | 99.7667 | 95.64 | 97.58 |92.19 | 94.06   |
+  | [GhostFaceNetV1-1.3-2 (A)](https://github.com/HamadYA/GhostFaceNets/releases/download/v1.5/GN_W1.3_S2_ArcFace_epoch48.h5) | MS1MV2 | 99.65 | 91.51 | 96.18 |90.53 | 92.66   |
+  | [GhostFaceNetV1-1.3-1 (A)](https://github.com/HamadYA/GhostFaceNets/releases/download/v1.4/GN_W1.3_S1_ArcFace_epoch46.h5) | MS1MV2 | 99.7667 | 95.64 | 97.58 |92.19 | 94.06   |
   | [GhostFaceNetV1-1.3-2 (C)]() | MS1MV2 | 99.5167 | 90.37 | 95.23 | - | - |
   | [GhostFaceNetV1-1.3-2 (SCA)]() | MS1MV2 | 99.633 | 90.73 | 95.6 | - | - |
   | [GhostFaceNetV1-1.3-1 (C)]() | MS1MV2 | 99.7167 | 94.7429 | 97.1833 | - | - |
   | [GhostFaceNetV1-1.3-1 (SCA)]() | MS1MV2 | 99.667 | 91.46 | 95.85 | - | - |
-  | [GhostFaceNetV1-1.3-1 (A)]() | MS1MV3 | 99.73 | 96.83 | 98 | 93.12 | 94.94 |
-  | [GhostFaceNetV1-1.3-2 (A)]() | MS1MV3 | 99.68 | 93.31 | 96.92 | 91.25 | 93.45 |
+  | [GhostFaceNetV1-1.3-1 (A)](https://github.com/HamadYA/GhostFaceNets/releases/download/v1.2/GhostFaceNet_W1.3_S1_ArcFace.h5) | MS1MV3 | 99.73 | 96.83 | 98 | 93.12 | 94.94 |
+  | [GhostFaceNetV1-1.3-2 (A)](https://github.com/HamadYA/GhostFaceNets/releases/download/v1.3/GhostFaceNet_W1.3_S2_ArcFace.h5) | MS1MV3 | 99.68 | 93.31 | 96.92 | 91.25 | 93.45 |
   | [GhostFaceNetV1-2-1 (A)]() | MS1MV2 | 99.77 | 96.56 | 97.47 | - | - |
 
 - **GhostFaceNetV2**
