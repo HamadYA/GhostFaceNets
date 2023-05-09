@@ -2,7 +2,7 @@ import os
 import data
 import evals
 import losses
-import models
+import GhostFaceNets, GhostFaceNets_with_Bias
 import myCallbacks
 import tensorflow as tf
 from tensorflow import keras
