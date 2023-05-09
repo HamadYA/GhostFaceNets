@@ -15,7 +15,7 @@ def __init_model_from_name__(name, input_shape=(112, 112, 3), weights="imagenet"
         from backbones import ghostv2
 
         xx = ghostv2.GhostNetV2(stem_width=16,
-                                stem_strides=1,
+                                # stem_strides=1,
                                 width_mul=1.3,
                                 num_ghost_module_v1_stacks=2,  # num of `ghost_module` stcks on the head, others are `ghost_module_multiply`, set `-1` for all using `ghost_module`
                                 input_shape=(112, 112, 3),
