@@ -11,7 +11,7 @@
 ## Results
   - `IJBB` and `IJBC` are scored at `TAR@FAR=1e-4`
   - Links in `Model backbone` are `h5` models in Google drive. `GhostFaceNet-w-s (loss)` where `w` refers to width, `s` refers to strides, and `loss` refers to the loss function {`A` refers to ArcFace, `C` refers to CosFace, and `SCA` refers to Subcenter ArcFace}.
-  - In my last experiments, I was able to get 99.7833% and 99.7167% accuracies on LFW using GhostFaceNetV1 S1 and S2 trained on MS1MV3 dataset. To reproduce, simply download [lfw.bin](https://github.com/leondgarse/Keras_insightface/releases/download/v1.0.0/lfw.bin), follow the Datasets and Data Preparation, download the weights, and then modify and run evaluation.ipynb. Note: Set flip=True inside the code.
+  - **In my last experiments, I was able to get 99.7833% and 99.7167% accuracies on LFW using GhostFaceNetV1 S1 and S2 trained on MS1MV3 dataset. To reproduce, simply download [lfw.bin](https://github.com/leondgarse/Keras_insightface/releases/download/v1.0.0/lfw.bin), follow the Datasets and Data Preparation, download the weights, and then modify and run evaluation.ipynb. Note: Set flip=True inside the code.**
     
   - **GhostFaceNetV1**
 
