@@ -6,6 +6,7 @@ import GhostFaceNets, GhostFaceNets_with_Bias
 import myCallbacks
 import tensorflow as tf
 from tensorflow import keras
+import models
 
 # import multiprocessing as mp
 
@@ -52,7 +53,7 @@ class Train:
         from inspect import getmembers, isfunction, isclass
 
         custom_objects.update(dict([ii for ii in getmembers(losses) if isfunction(ii[1]) or isclass(ii[1])]))
-        custom_objects.update({"NormDense": GhostFaceNets.NormDense})
+        custom_objects.update({"NormDense": models.NormDense})
 
         self.model, self.basic_model, self.save_path, self.inited_from_model, self.sam_rho, self.pretrained = None, None, save_path, False, sam_rho, pretrained
         self.vpl_start_iters, self.vpl_allowed_delta = vpl_start_iters, vpl_allowed_delta
@@ -295,9 +296,9 @@ class Train:
             print(">>>> Add arcface layer, arc_kwargs={}, vpl_kwargs={}...".format(arc_kwargs, vpl_kwargs))
             if vpl_start_iters > 0:
                 batch_size = self.batch_size_per_replica
-                arcface_logits = GhostFaceNets.NormDenseVPL(batch_size, self.classes, output_kernel_regularizer, **arc_kwargs, **vpl_kwargs, dtype="float32")
+                arcface_logits = models.NormDenseVPL(batch_size, self.classes, output_kernel_regularizer, **arc_kwargs, **vpl_kwargs, dtype="float32")
             else:
-                arcface_logits = GhostFaceNets.NormDense(self.classes, output_kernel_regularizer, **arc_kwargs, dtype="float32")
+                arcface_logits = models.NormDense(self.classes, output_kernel_regularizer, **arc_kwargs, dtype="float32")
 
             if self.model != None and "_embedding" not in self.model.output_names[-1]:
                 arcface_logits.build(embedding.shape)
