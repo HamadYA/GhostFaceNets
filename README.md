@@ -35,26 +35,26 @@
 
   | Model | Training Dataset | lfw (%)      | cfp_fp (%)   | agedb_30 (%) | IJBB     | IJBC     |
   | -------------- | ----- | -------- | -------- | -------- | -------- | -------- |
-  | [GhostFaceNetV2-1-2 (A)]() | MS1MV2 | 99.65 | 92.9 | 96.212 | - | - |
-  | [GhostFaceNetV2-1.1-2 (A)]() | MS1MV2 | 99.6 | 91.814 | 95.683 | - | - |
-  | [GhostFaceNetV2-1.2-2 (A)]() | MS1MV2 | 99.633 | 92.686 | 95.9 | - | - |
-  | [GhostFaceNetV2-1.4-2 (A)]() | MS1MV2 | 99.683 | 91.986 | 95.983 | - | - |
-  | [GhostFaceNetV2-1.5-2 (A)]() | MS1MV2 | 99.7 | 93.9 | 96.483 | - | - |
-  | [GhostFaceNetV2-1-2 (A)]() | MS1MV3 | 99.667 | 94.857 | 96.417 | - | - |
-  | [GhostFaceNetV2-1.1-2 (A)]() | MS1MV3 | 99.667 | 92.471 | 96.167 | - | - |
-  | [GhostFaceNetV2-1.2-2 (A)]() | MS1MV3 | 99.683 | 94.343 | 96.383 | - | - |
-  | [GhostFaceNetV2-1.4-2 (A)]() | MS1MV3 | 99.683 | 94.417 | 96.417 | - | - |
-  | [GhostFaceNetV2-1.5-2 (A)]() | MS1MV3 | 99.676 | 94.857 | 96.417 | - | - |
-  | [GhostFaceNetV2-1.3-2 (A)]() | MS1MV2 | 99.717 | 93.071 | 96.55 | 91.7624 |  |
-  | [GhostFaceNetV2-1.3-2 (A)]() | MS1MV3 | 99.683 | 94.2857 | 96.833 | 91.889 |   |
-  | [GhostFaceNetV2-1.3-2 (C)]() | MS1MV2 | 99.584 | 91.931 | 95.6 | - | - |
-  | [GhostFaceNetV2-1.3-2 (SCA)]() | MS1MV2 | 99.7 | 92.291 | 95.97 | - | - |
-  | [GhostFaceNetV2-1.3-1 (C)]() | MS1MV2 | 99.7167 | 94.7429 | 97.1833 | - | - |
-  | [GhostFaceNetV2-1.3-1 (SCA)]() | MS1MV2 | 99.667 | 91.46 | 95.85 | - | - |
-  | [GhostFaceNetV2-1.3-1 (A)]() | MS1MV3 | 99.73 | 96.83 | 98 | 93.12 | 94.94 |
-  | [GhostFaceNetV2-1.3-2 (A)]() | MS1MV3 | 99.68 | 93.31 | 96.92 | 91.25 | 93.45 |
-  | [GhostFaceNetV2-1.3-1 (A)]() | MS1MV2 |  |  |  | - | - |
-  | [GhostFaceNetV2-1.3-1 (A)]() | MS1MV3 |  |  |  | - | - |
+  | GhostFaceNetV2-1-2 (A) | MS1MV2 | 99.65 | 92.9 | 96.212 | - | - |
+  | GhostFaceNetV2-1.1-2 (A) | MS1MV2 | 99.6 | 91.814 | 95.683 | - | - |
+  | GhostFaceNetV2-1.2-2 (A) | MS1MV2 | 99.633 | 92.686 | 95.9 | - | - |
+  | GhostFaceNetV2-1.4-2 (A) | MS1MV2 | 99.683 | 91.986 | 95.983 | - | - |
+  | GhostFaceNetV2-1.5-2 (A) | MS1MV2 | 99.7 | 93.9 | 96.483 | - | - |
+  | GhostFaceNetV2-1-2 (A) | MS1MV3 | 99.667 | 94.857 | 96.417 | - | - |
+  | GhostFaceNetV2-1.1-2 (A) | MS1MV3 | 99.667 | 92.471 | 96.167 | - | - |
+  | GhostFaceNetV2-1.2-2 (A) | MS1MV3 | 99.683 | 94.343 | 96.383 | - | - |
+  | GhostFaceNetV2-1.4-2 (A) | MS1MV3 | 99.683 | 94.417 | 96.417 | - | - |
+  | GhostFaceNetV2-1.5-2 (A) | MS1MV3 | 99.676 | 94.857 | 96.417 | - | - |
+  | GhostFaceNetV2-1.3-2 (A) | MS1MV2 | 99.717 | 93.071 | 96.55 | 91.7624 |  |
+  | GhostFaceNetV2-1.3-2 (A) | MS1MV3 | 99.683 | 94.2857 | 96.833 | 91.889 |   |
+  | GhostFaceNetV2-1.3-2 (C) | MS1MV2 | 99.584 | 91.931 | 95.6 | - | - |
+  | GhostFaceNetV2-1.3-2 (SCA) | MS1MV2 | 99.7 | 92.291 | 95.97 | - | - |
+  | GhostFaceNetV2-1.3-1 (C) | MS1MV2 | 99.7167 | 94.7429 | 97.1833 | - | - |
+  | GhostFaceNetV2-1.3-1 (SCA) | MS1MV2 | 99.667 | 91.46 | 95.85 | - | - |
+  | GhostFaceNetV2-1.3-1 (A) | MS1MV3 | 99.73 | 96.83 | 98 | 93.12 | 94.94 |
+  | GhostFaceNetV2-1.3-2 (A) | MS1MV3 | 99.68 | 93.31 | 96.92 | 91.25 | 93.45 |
+  | GhostFaceNetV2-1.3-1 (A) | MS1MV2 |  |  |  | - | - |
+  | GhostFaceNetV2-1.3-1 (A) | MS1MV3 |  |  |  | - | - |
 
 ***
 
