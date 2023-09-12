@@ -15,7 +15,7 @@ def __init_model_from_name__(name, input_shape=(112, 112, 3), weights="imagenet"
         from backbones import ghostv2
 
         xx = ghostv2.GhostNetV2(stem_width=16,
-                                # stem_strides=1,
+                                stem_strides=1,
                                 width_mul=1.3,
                                 num_ghost_module_v1_stacks=2,  # num of `ghost_module` stcks on the head, others are `ghost_module_multiply`, set `-1` for all using `ghost_module`
                                 input_shape=(112, 112, 3),
@@ -173,58 +173,6 @@ def replace_ReLU_with_PReLU(model, target_activation="PReLU", **kwargs):
     return keras.models.clone_model(model, input_tensors=input_tensors, clone_function=convert_ReLU)
 
 
-def replace_add_with_stochastic_depth(model, survivals=(1, 0.8)):
-    """
-    - [Deep Networks with Stochastic Depth](https://arxiv.org/pdf/1603.09382.pdf)
-    - [tfa.layers.StochasticDepth](https://www.tensorflow.org/addons/api_docs/python/tfa/layers/StochasticDepth)
-    """
-    from tensorflow_addons.layers import StochasticDepth
-
-    add_layers = [ii.name for ii in model.layers if isinstance(ii, keras.layers.Add)]
-    total_adds = len(add_layers)
-    if isinstance(survivals, float):
-        survivals = [survivals] * total_adds
-    elif isinstance(survivals, (list, tuple)) and len(survivals) == 2:
-        start, end = survivals
-        survivals = [start - (1 - end) * float(ii) / total_adds for ii in range(total_adds)]
-    survivals_dict = dict(zip(add_layers, survivals))
-
-    def __replace_add_with_stochastic_depth__(layer):
-        if isinstance(layer, keras.layers.Add):
-            layer_name = layer.name
-            new_layer_name = layer_name.replace("_add", "_stochastic_depth")
-            new_layer_name = layer_name.replace("add_", "stochastic_depth_")
-            survival_probability = survivals_dict[layer_name]
-            if survival_probability < 1:
-                print("Converting:", layer_name, "-->", new_layer_name, ", survival_probability:", survival_probability)
-                return StochasticDepth(survival_probability, name=new_layer_name)
-            else:
-                return layer
-        return layer
-
-    input_tensors = keras.layers.Input(model.input_shape[1:])
-    return keras.models.clone_model(model, input_tensors=input_tensors, clone_function=__replace_add_with_stochastic_depth__)
-
-
-def replace_stochastic_depth_with_add(model, drop_survival=False):
-    from tensorflow_addons.layers import StochasticDepth
-
-    def __replace_stochastic_depth_with_add__(layer):
-        if isinstance(layer, StochasticDepth):
-            layer_name = layer.name
-            new_layer_name = layer_name.replace("_stochastic_depth", "_lambda")
-            survival = layer.survival_probability
-            print("Converting:", layer_name, "-->", new_layer_name, ", survival_probability:", survival)
-            if drop_survival or not survival < 1:
-                return keras.layers.Add(name=new_layer_name)
-            else:
-                return keras.layers.Lambda(lambda xx: xx[0] + xx[1] * survival, name=new_layer_name)
-        return layer
-
-    input_tensors = keras.layers.Input(model.input_shape[1:])
-    return keras.models.clone_model(model, input_tensors=input_tensors, clone_function=__replace_stochastic_depth_with_add__)
-
-
 def convert_to_mixed_float16(model, convert_batch_norm=False):
     policy = keras.mixed_precision.Policy("mixed_float16")
     policy_config = keras.utils.serialize_keras_object(policy)
@@ -235,8 +183,6 @@ def convert_to_mixed_float16(model, convert_batch_norm=False):
         if not convert_batch_norm and isinstance(layer, keras.layers.BatchNormalization):
             return layer
         if isinstance(layer, InputLayer):
-            return layer
-        if isinstance(layer, NormDense):
             return layer
         if isinstance(layer, Activation) and layer.activation == softmax:
             return layer

@@ -9,13 +9,13 @@ def __init_model_from_name__(name, input_shape=(112, 112, 3), weights="imagenet"
     if name_lower == "ghostnetv1":
         from backbones import ghost_model
 
-        xx = ghost_model.GhostNet(input_shape=input_shape, include_top=False, width=1.3, **kwargs)
+        xx = ghost_model.GhostNet(input_shape=input_shape, include_top=False, width=1, **kwargs)
     
     elif name_lower == "ghostnetv2":
         from backbones import ghostv2
 
         xx = ghostv2.GhostNetV2(stem_width=16,
-                                # stem_strides=1,
+                                stem_strides=1,
                                 width_mul=1.3,
                                 num_ghost_module_v1_stacks=2,  # num of `ghost_module` stcks on the head, others are `ghost_module_multiply`, set `-1` for all using `ghost_module`
                                 input_shape=(112, 112, 3),
@@ -173,115 +173,6 @@ def replace_ReLU_with_PReLU(model, target_activation="PReLU", **kwargs):
     return keras.models.clone_model(model, input_tensors=input_tensors, clone_function=convert_ReLU)
 
 
-class SAMModel(tf.keras.models.Model):
-    """
-    Arxiv article: [Sharpness-Aware Minimization for Efficiently Improving Generalization](https://arxiv.org/pdf/2010.01412.pdf)
-    Implementation by: [Keras SAM (Sharpness-Aware Minimization)](https://qiita.com/T-STAR/items/8c3afe3a116a8fc08429)
-
-    Usage is same with `keras.modeols.Model`: `model = SAMModel(inputs, outputs, rho=sam_rho, name=name)`
-    """
-
-    def __init__(self, *args, rho=0.05, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.rho = tf.constant(rho, dtype=tf.float32)
-
-    def train_step(self, data):
-        if len(data) == 3:
-            x, y, sample_weight = data
-        else:
-            sample_weight = None
-            x, y = data
-
-        # 1st step
-        with tf.GradientTape() as tape:
-            y_pred = self(x, training=True)
-            loss = self.compiled_loss(y, y_pred, sample_weight=sample_weight, regularization_losses=self.losses)
-
-        trainable_vars = self.trainable_variables
-        gradients = tape.gradient(loss, trainable_vars)
-
-        norm = tf.linalg.global_norm(gradients)
-        scale = self.rho / (norm + 1e-12)
-        e_w_list = []
-        for v, grad in zip(trainable_vars, gradients):
-            e_w = grad * scale
-            v.assign_add(e_w)
-            e_w_list.append(e_w)
-
-        # 2nd step
-        with tf.GradientTape() as tape:
-            y_pred_adv = self(x, training=True)
-            loss_adv = self.compiled_loss(y, y_pred_adv, sample_weight=sample_weight, regularization_losses=self.losses)
-        gradients_adv = tape.gradient(loss_adv, trainable_vars)
-        for v, e_w in zip(trainable_vars, e_w_list):
-            v.assign_sub(e_w)
-
-        # optimize
-        self.optimizer.apply_gradients(zip(gradients_adv, trainable_vars))
-
-        self.compiled_metrics.update_state(y, y_pred, sample_weight=sample_weight)
-        return_metrics = {}
-        for metric in self.metrics:
-            result = metric.result()
-            if isinstance(result, dict):
-                return_metrics.update(result)
-            else:
-                return_metrics[metric.name] = result
-        return return_metrics
-
-
-def replace_add_with_stochastic_depth(model, survivals=(1, 0.8)):
-    """
-    - [Deep Networks with Stochastic Depth](https://arxiv.org/pdf/1603.09382.pdf)
-    - [tfa.layers.StochasticDepth](https://www.tensorflow.org/addons/api_docs/python/tfa/layers/StochasticDepth)
-    """
-    from tensorflow_addons.layers import StochasticDepth
-
-    add_layers = [ii.name for ii in model.layers if isinstance(ii, keras.layers.Add)]
-    total_adds = len(add_layers)
-    if isinstance(survivals, float):
-        survivals = [survivals] * total_adds
-    elif isinstance(survivals, (list, tuple)) and len(survivals) == 2:
-        start, end = survivals
-        survivals = [start - (1 - end) * float(ii) / total_adds for ii in range(total_adds)]
-    survivals_dict = dict(zip(add_layers, survivals))
-
-    def __replace_add_with_stochastic_depth__(layer):
-        if isinstance(layer, keras.layers.Add):
-            layer_name = layer.name
-            new_layer_name = layer_name.replace("_add", "_stochastic_depth")
-            new_layer_name = layer_name.replace("add_", "stochastic_depth_")
-            survival_probability = survivals_dict[layer_name]
-            if survival_probability < 1:
-                print("Converting:", layer_name, "-->", new_layer_name, ", survival_probability:", survival_probability)
-                return StochasticDepth(survival_probability, name=new_layer_name)
-            else:
-                return layer
-        return layer
-
-    input_tensors = keras.layers.Input(model.input_shape[1:])
-    return keras.models.clone_model(model, input_tensors=input_tensors, clone_function=__replace_add_with_stochastic_depth__)
-
-
-def replace_stochastic_depth_with_add(model, drop_survival=False):
-    from tensorflow_addons.layers import StochasticDepth
-
-    def __replace_stochastic_depth_with_add__(layer):
-        if isinstance(layer, StochasticDepth):
-            layer_name = layer.name
-            new_layer_name = layer_name.replace("_stochastic_depth", "_lambda")
-            survival = layer.survival_probability
-            print("Converting:", layer_name, "-->", new_layer_name, ", survival_probability:", survival)
-            if drop_survival or not survival < 1:
-                return keras.layers.Add(name=new_layer_name)
-            else:
-                return keras.layers.Lambda(lambda xx: xx[0] + xx[1] * survival, name=new_layer_name)
-        return layer
-
-    input_tensors = keras.layers.Input(model.input_shape[1:])
-    return keras.models.clone_model(model, input_tensors=input_tensors, clone_function=__replace_stochastic_depth_with_add__)
-
-
 def convert_to_mixed_float16(model, convert_batch_norm=False):
     policy = keras.mixed_precision.Policy("mixed_float16")
     policy_config = keras.utils.serialize_keras_object(policy)
@@ -292,8 +183,6 @@ def convert_to_mixed_float16(model, convert_batch_norm=False):
         if not convert_batch_norm and isinstance(layer, keras.layers.BatchNormalization):
             return layer
         if isinstance(layer, InputLayer):
-            return layer
-        if isinstance(layer, NormDense):
             return layer
         if isinstance(layer, Activation) and layer.activation == softmax:
             return layer
