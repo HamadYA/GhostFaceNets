@@ -43,7 +43,12 @@ def face_align_landmarks_sk(img, landmarks, image_size=(112, 112), method="simil
 def do_detect_in_image(image, det, image_format="BGR"):
     imm_BGR = image if image_format == "BGR" else image[:, :, ::-1]
     imm_RGB = image[:, :, ::-1] if image_format == "BGR" else image
-    bboxes, pps = det.detect(imm_BGR, (640, 640))
+    # bboxes, pps = det.detect(imm_BGR, (640, 640))
+
+    bboxes, pps, ccs = det.__call__(imm_BGR)
+    #OR
+    # bboxes, pps, ccs, _ = det.detect_in_image(imm_BGR)
+
     nimgs = face_align_landmarks_sk(imm_RGB, pps)
     bbs, ccs = bboxes[:, :4].astype("int"), bboxes[:, -1]
     return bbs, ccs, nimgs
