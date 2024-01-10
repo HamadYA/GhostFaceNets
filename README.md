@@ -8,6 +8,10 @@
 
 ![GhostFaceNets](/images/Picture11.png)
 
+## Other Implementations
+- PyTorch Implementations:
+  1) https://github.com/Hazqeel09/ellzaf_ml
+
 ## Results
   - `IJBB` and `IJBC` are scored at `TAR@FAR=1e-4`
   - Links in `Model backbone` are `h5` models in Google drive. `GhostFaceNet-w-s (loss)` where `w` refers to width, `s` refers to strides, and `loss` refers to the loss function {`A` refers to ArcFace, `C` refers to CosFace, and `SCA` refers to Subcenter ArcFace}.
