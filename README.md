@@ -406,3 +406,18 @@ and
     ```
   - **Latest DOI**: [![DOI](https://zenodo.org/badge/229437028.svg)](https://zenodo.org/badge/latestdoi/229437028)
 ***
+
+  - **BibTeX**
+    ```bibtex
+    @misc{leondgarse,
+      author = {Leondgarse},
+      title = {Keras CV Attention Models},
+      year = {2022},
+      publisher = {GitHub},
+      journal = {GitHub repository},
+      doi = {10.5281/zenodo.6506947},
+      howpublished = {\url{https://github.com/leondgarse/keras_cv_attention_models}}
+    }
+    ```
+  - **Latest DOI**: [![DOI](https://zenodo.org/badge/391777965.svg)](https://zenodo.org/badge/latestdoi/391777965)
+***
